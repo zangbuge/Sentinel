@@ -126,6 +126,7 @@ angular
         }
       })
 
+      // 修改后 走这里了, 通过js跳转至 FlowControllerV2
       .state('dashboard.flow', {
           templateUrl: 'app/views/flow_v2.html',
           url: '/v2/flow/:app',
