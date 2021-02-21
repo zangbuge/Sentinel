@@ -8,7 +8,6 @@ import com.alibaba.nacos.api.config.ConfigFactory;
 import com.alibaba.nacos.api.config.ConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,6 +15,14 @@ import java.util.List;
 import java.util.Properties;
 
 /**
+ * 参考源码中官方提供了test示例下关于Nacos等持久化示例 （即test目录） test\java\com\alibaba\csp\sentinel\dashboard\rule\nacos\
+ * 但是具体的实现还需要一些细节
+ * 官方说明：从 Sentinel 1.4.0 开始，我们抽取出了接口用于向远程配置中心推送规则以及拉取规则
+ * DynamicRuleProvider<T>: 拉取规则, DynamicRulePublisher<T>: 推送规则
+ *
+ * 1. 在pom.xml文件中sentinel-datasource-nacos依赖去掉test scope注释
+ * 2. app/scripts/directives/sidebar/sidebar.html ,修改flowV1为flow 让其调用 FlowControllerV2 接口
+ * 3. 修改 FlowControllerV2 重写向远程配置中心 推送规则 以及拉取规则 FlowRuleNacosProvider 与 FlowRuleNacosPublisher 类
  * @Author: Li Huiming
  * @Date: 2021/2/21
  */
