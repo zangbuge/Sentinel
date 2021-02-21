@@ -36,7 +36,9 @@ public class FlowRuleNacosProvider implements DynamicRuleProvider<List<FlowRuleE
 
     @Override
     public List<FlowRuleEntity> getRules(String appName) throws Exception {
-        String rules = configService.getConfig(appName + NacosConfigUtil.FLOW_DATA_ID_POSTFIX, configProp.getGroupId(), 3000);
+        String dataId = appName + NacosConfigUtil.FLOW_DATA_ID_POSTFIX;
+        logger.info("dataId: {}", dataId);
+        String rules = configService.getConfig(dataId, configProp.getGroupId(), 3000);
         logger.info("从Nacos中拉取到限流规则信息:{}", rules);
         if (StringUtil.isEmpty(rules)) {
             return new ArrayList<>();
